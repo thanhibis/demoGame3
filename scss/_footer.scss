@@ -1,6 +1,18 @@
 @use "vars" as *;
 
 #footer{
-
+	background: #681910;
+	padding: 50px 0;
+	.footer-note{
+		text-align: center;
+		font-size: vw(24);
+		color: white;
+		line-height: 1.8;
+		span{
+			display: block;
+			color: #f6e279;
+			font-weight: bold;
+		}
+	}
 }
 

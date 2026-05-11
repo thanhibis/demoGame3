@@ -16,7 +16,7 @@
 
 
 .js-bar,.slimScrollDiv{
-	height: vw(436) !important;
+	height: vw(500) !important;
 	@include mq(){
 		height: auto !important;
 	}
@@ -29,7 +29,7 @@
 }
 .slimScrollBar{
 	display: block !important;
-	background: #3a8c54 !important;
+	background: #ba4b21 !important;
 	opacity: 1 !important;
 }
 .slimScrollRail {
@@ -208,6 +208,17 @@
 		right: 0;
 		@include font-size(15);
 		line-height: 1.5;
+		&:after{
+			content: "";
+			width: 125px;
+			height: 120px;
+			background: url(../img/af.png) no-repeat;
+			background-position: bottom right;
+			background-size: 100%;
+			position: absolute;
+			bottom: -20px;
+			right: -25px;
+		}
 		@include mq(){
 			font-size: vwsp(22);
 		}
@@ -241,7 +252,7 @@
 		}
 		&__ct{
 			position: relative;
-			padding: 22px 20px 50px;
+			padding: 22px 30px 50px;
 			@include mq(){
 				padding-left: 0;
 				padding-right: 0;
@@ -254,29 +265,40 @@
 					font-weight: 900;
 				}
 			}
-
-
+			&--nd{
+				background: url("../img/bg-popup-01.png")no-repeat;
+				background-size: 100% 100%;
+			}
+			&--nooty{
+				background: url("../img/bg-popup-02.png")no-repeat;
+				background-size: 100% 100%;
+				max-width: 700px;
+			}
 			&-ttl{
 				@include flex(center,center,wrap);
 				max-width: 672px;
 				margin: 0 auto;
 				text-align: center;
-				@include font-size(25);
+				@include font-size(23);
 				text-transform: uppercase;
 				font-weight: 900;
 				height: 44px;
 				color: white;
 				line-height: 1;
+				background: url("../img/bg-ttl.png")no-repeat;
+				background-size: 100% 100%;
 				margin-bottom: 20px;
 				@include mq(){
-
+					background: url("../img/bg-ttl-sp.png")no-repeat;
+					background-size: 100% 100%;
 					font-size: vwsp(35);
 					height: vwsp(60);
 					margin-bottom: vwsp(20);
 				}
 				&--small{
 					max-width: 404px;
-
+					background: url("../img/bg-ttl-small.png")no-repeat;
+					background-size: 100% 100%;
 					@include mq(){
 						margin: 0 auto vwsp(20);
 						max-width: vwsp(400);
@@ -328,6 +350,79 @@
 					padding: 0 0 0 50px;
 				}
 			}
+			&-box{
+				width: 80%;
+				margin: 20px auto 0;
+			}
+			&-note{
+				text-align: center;
+				@include font-size(23);
+				color: #885e3f;
+				text-transform: uppercase;
+				font-weight: bold;
+				position: relative;
+				margin-bottom: 20px;
+				&:before,&:after{
+					content: "";
+					width: 73px;
+					height: 13px;
+					position: absolute;
+					@include v-align;
+				}
+				&:before{
+					left: 0;
+					background: url("../img/bf-01.png")no-repeat;
+					background-size: 100%;
+				}
+				&:after{
+					right: 0;
+					background: url("../img/af-01.png")no-repeat;
+					background-size: 100%;
+				}
+			}
+			&-gift{
+				@include flex(center,center,wrap);
+				margin: 0 -10px 30px;
+				text-align: center;
+				font-weight: 500;
+				color: #4f5855;
+				li{
+					padding: 0 10px;
+					width: 25%;
+				}
+				&--other{
+					padding: 20px 0;
+					li{
+						width: 20%;
+					}
+				}
+				&-img{
+					width: 80px;
+					height: 80px;
+					margin: 0 auto 10px;
+					background: url("../img/item-01.png")no-repeat;
+					background-size: 100% 100%;
+					@include flex(center,center);
+					img{
+						width: 70%;
+					}
+				}
+			}
+			.btn-mail{
+				display: block;
+				background: #c48f5c;
+				padding: 10px;
+				@include font-size(22);
+				text-align: center;
+				font-weight: 500;
+				color: white;
+				margin-bottom: 30px;
+			}
+			.c-btn__img{
+				display: block;
+				width: 206px;
+				margin: 0 auto;
+			}
 		}
 		&__gift{
 			@include flex(0,0,wrap);
@@ -353,6 +448,8 @@
 		&__task{
 			&-item{
 				@include flex(0,center,wrap);
+				background: url("../img/task.png")no-repeat;
+				background-size: 100% 100%;
 				padding: 15px;
 				margin-bottom: 27px;
 				@include mq(){
