@@ -12,25 +12,42 @@
 	left: 0;
 	right: 0;
 	margin: 0 auto;
+	@include mq(){
+		top: 0;
+	}
 	&__heading{
 		width: vw(524);
 		left: 0;
 		right: 0;
 		margin: 0 auto vw(30);
+		@include mq(){
+			width: vwsp(606);
+			margin-bottom: vwsp(300);
+		}
 	}
 	&__play{
 		display: block;
 		width: vw(93);
 		margin: 0 auto vw(30);
 		cursor: pointer;
+		@include mq(){
+			width: vwsp(93);
+			margin-bottom: vwsp(30);
+		}
 	}
 	&__option{
 		@include flex(center,center,wrap);
 		&-item{
 			margin: 0 vw(20);
+			@include mq(){
+				margin: 0 vwsp(20);
+			}
 			a{
 				display: block;
 				width: vw(396);
+				@include mq(){
+					width: vwsp(320);
+				}
 			}
 		}
 	}
@@ -50,6 +67,13 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
+		@include mq(){
+			background: url(../img/bg-02-sp.png) no-repeat;
+			background-size: cover;
+			background-position: top center;
+			top: vwsp(-360);
+			bottom: vwsp(-60);
+		}
 	}
 	.inner{
 		position: relative;
@@ -61,6 +85,9 @@
 	max-width: vw(769);
 	display: block;
 	margin: 0 auto vw(10);
+	@include mq(){
+		max-width: 100%;
+	}
 	img{
 		display: block;
 		margin: 0 auto;
@@ -75,6 +102,12 @@
 		background-size: 100%;
 		position: relative;
 		padding: vw(55) vw(45) 0 vw(55);
+		@include mq(){
+			max-width: 100%;
+			background: url("../img/block-01-sp.png")no-repeat;
+			background-size: 100%;
+			padding: vwsp(40) vwsp(40) vwsp(70) vwsp(45);
+		}
 		&__item{
 			margin-bottom: vw(25);
 			position: relative;
@@ -84,8 +117,16 @@
 			top: vw(67);
 			left: vw(23);
 			right: vw(23);
+			@include mq(){
+				top: vwsp(64);
+				left: vwsp(20);
+				right: vwsp(20);
+			}
 			&.--form{
-				top: vw(81);
+
+				@include mq(md-min){
+					top: vw(81);
+				}
 			}
 		}
 		&__form{
@@ -95,6 +136,11 @@
 				height: vw(50);
 				background: #c48f5c;
 				border-radius: 0;
+				@include mq(){
+					width: 100%;
+					margin-bottom: vwsp(10);
+					height: vwsp(46);
+				}
 			}
 			&-sub{
 				width: vw(206);
@@ -103,6 +149,10 @@
 				outline: none;
 				cursor: pointer;
 				padding: 0;
+				@include mq(){
+					width: vwsp(186);
+					margin: 0 auto;
+				}
 				img{
 					width: 100%;
 				}
@@ -115,6 +165,10 @@
 				padding: 0 vw(55) 0 0;
 				@include flex(between,center,wrap);
 				width: 60%;
+				@include mq(){
+					width: 50%;
+					padding: 0 20% 0 5%;
+				}
 				&:after{
 					content: "";
 					width: vw(28);
@@ -124,10 +178,21 @@
 					position: absolute;
 					@include v-align;
 					right: 0;
+					@include mq(){
+						width: vwsp(25);
+						height: vwsp(40);
+					}
 				}
 				a{
 					display: block;
 					width: vw(179);
+					@include mq(){
+						width: 100%;
+						margin-bottom: vwsp(10);
+						&:last-child{
+							margin-bottom: 0;
+						}
+					}
 					img{
 						width: 100%;
 					}
@@ -136,6 +201,9 @@
 			&-show{
 				width: 37%;
 				@include flex(0,center,wrap);
+				@include mq(){
+					width: 50%;
+				}
 				&-fill{
 					width: vw(80);
 					height: vw(80);
@@ -143,6 +211,11 @@
 					background-size: 100% 100%;
 					position: relative;
 					@include flex(center,center);
+					@include mq(){
+						width: vwsp(80);
+						height: vwsp(80);
+						margin: 0 auto vw(20);
+					}
 					img{
 						width: 70%;
 						display: block;
@@ -155,6 +228,12 @@
 					font-size: vw(23);
 					font-weight: bold;
 					color: white;
+					@include mq(){
+						width: 100%;
+						padding: 0;
+						font-size: vwsp(21);
+						text-align: center;
+					}
 					span{
 						display: block;
 						color: #ffdf5c;
@@ -164,6 +243,9 @@
 		}
 		&__facebook{
 			@include flex(between,center,wrap);
+			@include mq(){
+				padding: vwsp(33) 0 0;
+			}
 			&-heading{
 				width: 40%;
 				font-size: vw(23);
@@ -172,6 +254,10 @@
 				color: white;
 				position: relative;
 				padding: 0 vw(50) 0 0;
+				@include mq(){
+					font-size: vwsp(21);
+					padding: 0 vwsp(50) 0 0;
+				}
 				&:after{
 					content: "";
 					width: vw(28);
@@ -181,17 +267,27 @@
 					position: absolute;
 					@include v-align;
 					right: 0;
+					@include mq(){
+						width: vwsp(25);
+						height: vwsp(40);
+					}
 				}
 				a{
 					display: block;
 					width: vw(206);
 					margin: 0 auto;
+					@include mq(){
+						width: vwsp(186);
+					}
 				}
 			}
 			&-list{
 				width: 60%;
 				@include flex(between,center,wrap);
 				padding: 0 0 0 vw(30);
+				@include mq(){
+					padding: 0 0 0 vwsp(25);
+				}
 				&-item{
 					width: vw(80);
 					height: vw(80);
@@ -200,6 +296,11 @@
 					position: relative;
 					margin: 0 vw(5);
 					@include flex(center,center);
+					@include mq(){
+						width: vwsp(80);
+						height: vwsp(80);
+						margin: 0;
+					}
 					img{
 						width: 70%;
 						display: block;
@@ -213,6 +314,9 @@
 
 .sec-gif{
 	padding: vw(50) 0 vw(100);
+	@include mq(){
+		padding-bottom: vwsp(150);
+	}
 	&:before{
 		content: "";
 		position: absolute;
@@ -222,6 +326,10 @@
 		bottom: 0;
 		background: url("../img/bg-03.jpg")no-repeat;
 		background-size: cover;
+		@include mq(){
+			background: url("../img/bg-03-sp.jpg")no-repeat;
+			background-size: cover;
+		}
 	}
 	.inner{
 		max-width: 100%;
@@ -231,6 +339,9 @@
 	}
 	.heading-block{
 		max-width: vw(567);
+		@include mq(){
+			max-width: vwsp(567);
+		}
 	}
 }
 
@@ -241,11 +352,17 @@
 	font-weight: bold;
 	position: relative;
 	z-index: 1;
+	@include mq(){
+		font-size: vwsp(25);
+	}
 	span{
 		display: inline-block;
 		position: relative;
 		padding: 0 vw(25);
 		margin-bottom: vw(10);
+		@include mq(){
+			padding: 0 vwsp(16);
+		}
 		&:before,&:after{
 			content: "";
 			width: vw(12);
@@ -254,6 +371,10 @@
 			background-size: 100%;
 			position: absolute;
 			@include v-align;
+			@include mq(){
+				width: vwsp(12);
+				height: vwsp(12);
+			}
 		}
 		&:before{
 			left: 0;
@@ -272,6 +393,11 @@
 		font-weight: bold;
 		color: #ffc160;
 		margin: 0 auto;
+		@include mq(){
+			width: vwsp(333);
+			height: vwsp(71);
+			font-size: vwsp(40);
+		}
 	}
 }
 
@@ -280,6 +406,9 @@
 	max-width: vw(1628);
 	position: relative;
 	margin: vw(-110) 0 0;
+	@include mq(){
+		max-width: 100%;
+	}
 	img{
 		width: 100%;
 	}
@@ -289,6 +418,11 @@
 		top: vw(161);
 		right: vw(86);
 		@include flex(between,start,wrap);
+		@include mq(){
+			width: auto;
+			left: vwsp(90);
+			right: vwsp(90);
+		}
 	}
 	&__list{
 		display: grid;
@@ -296,6 +430,10 @@
 		gap: vw(20);
 		width: 63%;
 		padding: vw(30) 0 0;
+		@include mq(){
+			width: 100%;
+			gap: vwsp(20);
+		}
 		&-item{
 			position: relative;
 			span{
@@ -307,12 +445,19 @@
 				font-size: vw(40);
 				font-weight: bold;
 				color: #b95f2d;
+				@include mq(){
+					font-size: vwsp(48);
+					bottom: vwsp(11);
+				}
 			}
 		}
 	}
 	&__other{
 		width: 35%;
 		position: relative;
+		@include mq(){
+			width: 100%;
+		}
 		span{
 			font-size: vw(40);
 			font-weight: bold;
@@ -322,6 +467,10 @@
 			left: 0;
 			right: 0;
 			text-align: center;
+			@include mq(){
+				font-size: vwsp(48);
+				bottom: vwsp(13);
+			}
 		}
 	}
 }

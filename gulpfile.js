@@ -11,8 +11,9 @@ import ejs from 'gulp-ejs';
 import gulpSass from 'gulp-sass';
 import * as dartSass from 'sass';
 import sourcemaps from 'gulp-sourcemaps';
-import autoprefixer from 'gulp-autoprefixer';
-import cleanCSS from 'gulp-clean-css';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import imageMin from 'gulp-imagemin';
 import mozJpeg from 'imagemin-mozjpeg';
 import pngQuant from 'imagemin-pngquant';
@@ -118,7 +119,11 @@ const buildPageStream = (page, templateFile) => {
     
     return gulp
         .src(templateFile)
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: function(err) {
+                this.emit('end');
+            }
+        }))
         .pipe(
             ejs({
                 pageData: page,
@@ -167,7 +172,14 @@ export const sassTask = () => {
             './scss/**/*.scss',
             '!./scss/**/_*.scss' // Exclude partials
         ])
-        .pipe(plumber());
+        .pipe(plumber({
+            errorHandler: function(err) {
+                console.error('\n❌ SCSS Error:');
+                console.error(err.messageFormatted || err.message);
+                console.log('✅ Watching for changes... (fix the error and save again)\n');
+                this.emit('end'); // Keep stream alive
+            }
+        }));
     
     if (!isProd) {
         stream = stream.pipe(sourcemaps.init());
@@ -178,19 +190,15 @@ export const sassTask = () => {
             sass({
                 outputStyle: 'expanded',
             })
-        )
-        .pipe(autoprefixer()); // ✅ browserslist は package.json で一元管理
+        );
     
+    // ✅ PostCSS with autoprefixer and cssnano (browserslist is managed in package.json)
+    const postcssPlugins = [autoprefixer()];
     if (isProd) {
-        stream = stream.pipe(cleanCSS({
-            compatibility: 'ie10',
-            level: {
-                1: {
-                    specialComments: 'all'
-                }
-            }
-        }));
+        postcssPlugins.push(cssnano());
     }
+    
+    stream = stream.pipe(postcss(postcssPlugins));
     
     if (!isProd) {
         stream = stream.pipe(sourcemaps.write('./maps'));
@@ -206,7 +214,14 @@ export const jsTask = () => {
     // Compile and minify main scripts
     let compileStream = gulp
         .src(paths.scripts.src)
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: function(err) {
+                console.error('\n❌ JavaScript Error:');
+                console.error(err.message);
+                console.log('✅ Watching for changes... (fix the error and save again)\n');
+                this.emit('end');
+            }
+        }))
         .pipe(
             babel({
                 presets: ['@babel/preset-env'], // ✅ browserslist は package.json で一元管理
@@ -306,11 +321,18 @@ export const watchTask = () => {
 };
 
 // ============================================================
-// Images Task (Process all images: optimize + svg + webp)
+// Images Task (Process images: optimize + svg, excluding webp)
 // ============================================================
 export const images = gulp.parallel(
     imgTask,
-    svgTask,
+    svgTask
+);
+
+// ============================================================
+// Images with WebP Task (Heavy task - run separately when needed)
+// ============================================================
+export const imagesWebp = gulp.series(
+    images,
     webpTask
 );
 
@@ -324,13 +346,27 @@ export const dev = gulp.series(
 
 // ============================================================
 // Build Task (Full optimization with minification)
+// Split into stages to reduce CPU/memory load
 // ============================================================
-export const build = gulp.parallel(
-    ejsTask,
-    sassTask,
-    jsTask,
-    imgTask,
-    svgTask,
+export const build = gulp.series(
+    // Stage 1: Code compilation (parallel)
+    gulp.parallel(
+        ejsTask,
+        sassTask,
+        jsTask
+    ),
+    // Stage 2: Image optimization (parallel)
+    gulp.parallel(
+        imgTask,
+        svgTask
+    )
+);
+
+// ============================================================
+// Build with WebP (Full build + WebP conversion)
+// ============================================================
+export const buildWebp = gulp.series(
+    build,
     webpTask
 );
 
