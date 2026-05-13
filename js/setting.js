@@ -101,3 +101,26 @@ $('.js-popup-02').on('click', function(e){
 	$("#popup-02").addClass("active");
 	$("html").addClass("js-locked");
 });
+
+$(function () {
+	var headerHeight = $('#header').outerHeight();
+	var urlHash = location.hash;
+	if (urlHash) {
+		$('body,html').stop().scrollTop(0);
+		setTimeout(function () {
+			var target = $(urlHash);
+			var position = target.offset().top - headerHeight;
+			$('body,html').stop().animate({scrollTop: position}, 700);
+		}, 100);
+	}
+	
+	jQuery('.js-scroll').click(function(e) {
+		$(".js-mobile").toggleClass("js-mobile--close");
+		$("html").removeClass("js-locked");
+		$(".header-nav").fadeOut();
+		jQuery('html,body').animate({ scrollTop: jQuery(this.hash).offset().top - headerHeight}, 700);
+		return false;
+		e.preventDefault();
+	});
+	
+});
