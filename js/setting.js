@@ -39,6 +39,7 @@ $('.class-gallery__for').slick({
 	fade: true,
 	asNavFor: '.class-gallery__nav',
 	infinite: true,
+	adaptiveHeight: true
 });
 $('.class-gallery__nav').slick({
 	slidesToShow: 10,
@@ -64,7 +65,31 @@ $(window).on('load ', function () {
 	$(".class-gallery").each(function () {
 		$(this).find('.class-gallery__nav--custom').append($(this).find('.slick-arrow'));
 	});
+	$(".class-gallery__for-ct").each(function () {
+	
+	});
 });
+
+$('.class-gallery__for-status li').on('click', function () {
+	const index = $(this).index();
+	
+	$(this)
+		.addClass('active')
+		.siblings()
+		.removeClass('active');
+	
+	const $tabWrap = $(this)
+		.closest('.class-gallery__for-ct')
+		.find('.class-gallery__for-tab');
+	
+	$tabWrap.find('li')
+		.removeClass('active')
+		.eq(index)
+		.addClass('active');
+	
+});
+
+
 
 $('.video-list').slick({
     dots: true,

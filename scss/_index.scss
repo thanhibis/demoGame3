@@ -127,10 +127,13 @@
 				@include mq(md-min){
 					top: vw(81);
 				}
+				@include mq(){
+					top: vwsp(90);
+				}
 			}
 		}
 		&__form{
-			@include flex(between,center,wrap);
+			@include flex(center,center,wrap);
 			.form-control{
 				width: calc(100% - vw(230));
 				height: vw(50);
@@ -536,6 +539,9 @@
 			max-width: vw(1320);
 			margin: 0 auto;
 			padding: 0 0 vw(20);
+			@include mq(md-min){
+				min-height: vw(605);
+			}
 			@include mq(){
 				display: block;
 				padding: 0 vwsp(20);
@@ -631,7 +637,7 @@
 					width: 33.333%;
 					padding: 0 vwsp(10);
 				}
-				a{
+				a,span{
 					@include flex(center,center,wrap);
 					line-height: 1.2;
 					font-weight: bold;
@@ -641,16 +647,33 @@
 					font-size: vw(20);
 					background: url("../img/btn-05.png")no-repeat;
 					background-size: 100% 100%;
+					cursor: pointer;
 					@include mq(){
 						width: 100%;
 						height: vwsp(74);
 						font-size: vwsp(24);
 					}
-					&.active,&:hover{
+					&:hover{
 						background: url("../img/btn-05-hv.png")no-repeat;
 						background-size: 100% 100%;
 						opacity: 1;
 					}
+				}
+				&.active {
+					a,span{
+						background: url("../img/btn-05-hv.png")no-repeat;
+						background-size: 100% 100%;
+						opacity: 1;
+					}
+
+				}
+			}
+		}
+		&-tab{
+			li{
+				display: none;
+				&.active{
+					display: block;
 				}
 			}
 		}

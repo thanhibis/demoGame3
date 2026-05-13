@@ -1433,13 +1433,20 @@ Component
 .form-control {
   display: block;
   width: 100%;
-  height: 45px;
-  background: white;
   border: 1px solid #ccc;
   font-weight: 500;
   padding: 5px 10px;
   font-size: 1.1979166667vw;
-  border-radius: 10px;
+  height: 2.6041666667vw;
+  background: #c48f5c;
+  border-radius: 0;
+}
+@media screen and (max-width: 768px) {
+  .form-control {
+    width: 100%;
+    margin-bottom: 1.3020833333vw;
+    height: 5.9895833333vw;
+  }
 }
 @media screen and (max-width: 768px) {
   .form-control {
@@ -1452,16 +1459,16 @@ Component
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 .form-control::-webkit-input-placeholder {
-  color: #6c6c6c;
+  color: #fff;
 }
 .form-control:-moz-placeholder {
-  color: #6c6c6c;
+  color: #fff;
 }
 .form-control::-moz-placeholder {
-  color: #6c6c6c;
+  color: #fff;
 }
 .form-control:-ms-input-placeholder {
-  color: #6c6c6c;
+  color: #fff;
 }
 
 .pure-list {
@@ -1784,6 +1791,9 @@ Component
   .popup-show__ct-box {
     width: 100%;
   }
+}
+.popup-show__ct .form-control {
+  margin-bottom: 20px;
 }
 .popup-show__ct-note {
   text-align: center;
@@ -2815,9 +2825,14 @@ Component
     top: 4.21875vw;
   }
 }
+@media screen and (max-width: 768px) {
+  .regitter-step__block.--form {
+    top: 11.71875vw;
+  }
+}
 .regitter-step__form {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -3310,6 +3325,11 @@ Component
   margin: 0 auto;
   padding: 0 0 1.0416666667vw;
 }
+@media screen and (min-width: 769px) {
+  .class-gallery__for-block {
+    min-height: 31.5104166667vw;
+  }
+}
 @media screen and (max-width: 768px) {
   .class-gallery__for-block {
     display: block;
@@ -3422,7 +3442,7 @@ Component
     padding: 0 1.3020833333vw;
   }
 }
-.class-gallery__for-status li a {
+.class-gallery__for-status li a, .class-gallery__for-status li span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3435,18 +3455,30 @@ Component
   font-size: 1.0416666667vw;
   background: url("../img/btn-05.png") no-repeat;
   background-size: 100% 100%;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
-  .class-gallery__for-status li a {
+  .class-gallery__for-status li a, .class-gallery__for-status li span {
     width: 100%;
     height: 9.6354166667vw;
     font-size: 3.125vw;
   }
 }
-.class-gallery__for-status li a.active, .class-gallery__for-status li a:hover {
+.class-gallery__for-status li a:hover, .class-gallery__for-status li span:hover {
   background: url("../img/btn-05-hv.png") no-repeat;
   background-size: 100% 100%;
   opacity: 1;
+}
+.class-gallery__for-status li.active a, .class-gallery__for-status li.active span {
+  background: url("../img/btn-05-hv.png") no-repeat;
+  background-size: 100% 100%;
+  opacity: 1;
+}
+.class-gallery__for-tab li {
+  display: none;
+}
+.class-gallery__for-tab li.active {
+  display: block;
 }
 .class-gallery__for-note {
   text-align: center;
