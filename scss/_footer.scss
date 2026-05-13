@@ -8,6 +8,9 @@
 		font-size: vw(24);
 		color: white;
 		line-height: 1.8;
+		@include mq(){
+			font-size: vwsp(24);
+		}
 		span{
 			display: block;
 			color: #f6e279;

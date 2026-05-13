@@ -47,8 +47,19 @@ $('.class-gallery__nav').slick({
 	dots: false,
 	focusOnSelect: true,
 	infinite: true,
-	arrows: true,
+	arrows: false,
+	responsive: [
+		{
+			breakpoint: 800,
+			settings: {
+				slidesToShow: 5,
+				centerMode: true,
+				centerPadding: 0,
+			}
+		}
+	]
 });
+
 $(window).on('load ', function () {
 	$(".class-gallery").each(function () {
 		$(this).find('.class-gallery__nav--custom').append($(this).find('.slick-arrow'));
